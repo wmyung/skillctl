@@ -77,13 +77,13 @@ Most users don't know which skills they use — they discover it through convers
 
 ```text
 User: "There are too many skills"  (feeling context pressure)
-Agent: skillctl status  → "250 active, 120 archived. Want me to suggest what to archive?"
+Agent: skillctl status  → "100 active, 50 archived. Want me to suggest what to archive?"
 
 User: "Sure, what do you have in mind?"
 Agent: Groups skills by category, estimates usage, proposes archive candidates
 
 User: "Keep those, archive the rest"
-Agent: skillctl remove <list>  → "150 left. Reinstall anytime with `skillctl install <name>`"
+Agent: skillctl remove <list>  → "60 left. Reinstall anytime with `skillctl install <name>`"
 ```
 
 **Key insight:** Users rarely pre-sort skills. They respond to concrete proposals. Let the agent:
