@@ -27,7 +27,7 @@ If you also have [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memor
 | Layer | Tool | Scope |
 |---|---|---|
 | Skill registry | `skillctl search` | All skills (active + archived), ~10ms |
-| Cross-agent memory | `memory_enhancer_search("skill:...")` | Across agents with shared DB, ~500ms |
+| Cross-agent memory | `memory_enhancer_search("skill:...")` | If multiple agents share a DB, ~500ms |
 
 Without the enhancer, skillctl works standalone. All search is local via SQLite.
 

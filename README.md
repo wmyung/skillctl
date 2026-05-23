@@ -2,7 +2,7 @@
 
 **Zero-dependency skill manager for Hermes Agent. Trim your `available_skills`. Reclaim context. Reinstall in seconds.**
 
-Every skill in `~/.hermes/skills/` injects its name and description into the system prompt every session. 382 skills means ~50KB of context burned before the model reads a single user message. **skillctl moves unused skills to an archive directory so they stop consuming context, and brings them back on demand.**
+Every skill in `~/.hermes/skills/` injects its name and description into the system prompt every session. 300+ skills means ~50KB of context burned before the model reads a single user message. **skillctl moves unused skills to an archive directory so they stop consuming context, and brings them back on demand.**
 
 ## The Problem
 
@@ -10,7 +10,7 @@ Hermes Agent uses progressive disclosure for skill *content* (`skill_view()` loa
 
 | Component | Size |
 |---|---|
-| `available_skills` ~382 entries | ~50 KB |
+| `available_skills` ~300 entries | ~50 KB |
 | System prompt (rules, tools, memory) | ~30 KB |
 | **Total static overhead** | **~80 KB** |
 
@@ -75,15 +75,15 @@ skillctl's niche: **the leanest Hermes-native skill toggler — zero dependencie
 
 Most users don't know which skills they use — they discover it through conversation. Here's the pattern that works:
 
-```
-User: "스킬이 너무 많아"  (feeling context pressure)
-Agent: skillctl status  → "257 active, 125 archived. Want me to suggest what to archive?"
+```text
+User: "There are too many skills"  (feeling context pressure)
+Agent: skillctl status  → "250 active, 120 archived. Want me to suggest what to archive?"
 
-User: "좋아, 어떤 게 있지?"
+User: "Sure, what do you have in mind?"
 Agent: Groups skills by category, estimates usage, proposes archive candidates
 
-User: "이건 남겨, 저건 지워"
-Agent: skillctl remove <list>  → "160 left. Reinstall anytime with `skillctl install <name>`"
+User: "Keep those, archive the rest"
+Agent: skillctl remove <list>  → "150 left. Reinstall anytime with `skillctl install <name>`"
 ```
 
 **Key insight:** Users rarely pre-sort skills. They respond to concrete proposals. Let the agent:
