@@ -71,6 +71,30 @@ skillctl is complementary: curator handles *passive rot*, skillctl handles *acti
 
 skillctl's niche: **the leanest Hermes-native skill toggler — zero dependencies, one file, instant on/off.**
 
+## Recommended Workflow
+
+Most users don't know which skills they use — they discover it through conversation. Here's the pattern that works:
+
+```
+User: "스킬이 너무 많아"  (feeling context pressure)
+Agent: skillctl status  → "257 active, 125 archived. Want me to suggest what to archive?"
+
+User: "좋아, 어떤 게 있지?"
+Agent: Groups skills by category, estimates usage, proposes archive candidates
+
+User: "이건 남겨, 저건 지워"
+Agent: skillctl remove <list>  → "160 left. Reinstall anytime with `skillctl install <name>`"
+```
+
+**Key insight:** Users rarely pre-sort skills. They respond to concrete proposals. Let the agent:
+1. Scan & group active skills
+2. Propose archive candidates with rationale
+3. Let the user confirm/reject per category
+4. Execute with `skillctl remove`
+5. Show the before/after diff
+
+This conversational cleanup takes 2-3 minutes and can be repeated monthly.
+
 ## For Agents (Read This)
 
 **How to use skillctl when helping a user:**
