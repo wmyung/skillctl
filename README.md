@@ -63,29 +63,40 @@ skillctl is complementary: curator handles *passive rot*, skillctl handles *acti
 
 | Project | Deps | Scope | On/Off | Search | Hermes-native |
 |---|---|---|---|---|---|
-| **skillctl (this)** | **0** | Hermes-only | ✅ Instant | ✅ SQLite FTS | ✅ Native |
+| **skillctl (this)** | **0** | Hermes-only | ✅ Instant | ✅ SQLite | ✅ Native |
 | [Hermes Curator](https://hermes-agent.nousresearch.com/docs/user-guide/features/curator) | Hermes | Hermes-only | ⏳ 30/90d | ❌ | ✅ Built-in |
-| [agent-skill-manager](https://github.com/luongnv89/agent-skill-manager) | Node.js | 17 providers | ✅ | ✅ | ❌ Cross-platform |
-| [Skills-ContextManager](https://github.com/One-Man-Company/Skills-ContextManager) | Python+Node | MCP apps | ✅ Toggle | ✅ | ❌ MCP |
-| [Acontext](https://github.com/memodb-io/acontext) | Python | Any agent | ❌ Auto-learn | ✅ Semantic | ❌ Memory layer |
-| [Curator Evolver](https://github.com/pingchesu/hermes-curator-evolver) | Hermes plugin | Hermes-only | ⏳ Evidence-based | ✅ | ✅ Plugin |
+| [agent-skill-manager](https://github.com/luongnv89/agent-skill-manager) | Node.js | 17 providers | ✅ | ✅ | ❌ |
+| [Skills-ContextManager](https://github.com/One-Man-Company/Skills-ContextManager) | Python+Node | MCP apps | ✅ Toggle | ✅ | ❌ |
+| [Curator Evolver](https://github.com/pingchesu/hermes-curator-evolver) | Hermes plugin | Hermes-only | ⏳ Evidence | ✅ | ✅ Plugin |
 
 skillctl's niche: **the leanest Hermes-native skill toggler — zero dependencies, one file, instant on/off.**
 
 ## For Agents (Read This)
 
-> **AGENTS.md integration:** This tool exists because `available_skills` bloat is the #1 context thief. When you see 300+ skills in your system prompt, remember that most are archived. Use `skillctl search <topic>` before calling `skill_view()` — the SQLite index covers every skill in the system, active or not. If a skill isn't active, suggest `skillctl install <name>` to the user — it takes 0.1 seconds.
+**How to use skillctl when helping a user:**
 
-## Integration with Memory Enhancer
+1. **User asks for something a skill might handle** — check `available_skills` first (already in context). If found, use `skill_view()`.
+2. **Not in available_skills?** — suggest `skillctl search <topic>`. This searches both active and archived skills via SQLite.
+3. **Found in archive?** — suggest `skillctl install <name>`. Takes ~0.1s.
+4. **Not in skillctl's index either?** — fall back to web search or other resources.
 
-skillctl pairs with [**Hermes Memory Enhancer**](https://github.com/wmyung/hermes-memory-enhancer) — the shared SQLite memory across all 6 agents. The enhancer stores skill descriptions for cross-agent discovery:
+**When to suggest archiving:**
+- The user hasn't used a skill in weeks.
+- You notice context pressure from too many active skills.
+- A skill was only needed once for a one-off task.
+
+**Important:** Archived skills are NOT deleted. They live in `~/.hermes/archive-skills/` and are fully recoverable with `skillctl install`.
+
+## Optional: Memory Enhancer Integration
+
+If you also use [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer), you can cross-reference skillctl with the shared memory DB:
 
 ```
-memory_enhancer_search("skill:postgwas")  → finds postgws tools
-skillctl install postgwas-comprehensive-report-builder
+memory_enhancer_search("skill:postgwas")  → finds descriptions
+skillctl install postgwas-comprehensive-report-builder  → activates it
 ```
 
-See also: [codex-cli-memory-enhancer](https://github.com/wmyung/codex-cli-memory-enhancer) — same pattern for OpenAI Codex CLI.
+Without the enhancer, skillctl works just fine — all search is local via SQLite.
 
 ## Install
 
@@ -99,4 +110,4 @@ chmod +x skillctl
 
 ## Keywords
 
-`hermes-agent` `context-optimization` `skill-manager` `prompt-compression` `available-skills` `sqlite` `agent-tooling` `llm-context` `zero-dependency` `token-saver` `hermes-plugin`
+`hermes-agent` `context-optimization` `skill-manager` `prompt-compression` `available-skills` `sqlite` `agent-tooling` `llm-context` `zero-dependency` `token-saver`
