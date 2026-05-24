@@ -111,6 +111,18 @@ This conversational cleanup takes 2-3 minutes and can be repeated monthly.
 
 **Important:** Archived skills are NOT deleted. They live in `~/.hermes/archive-skills/` and are fully recoverable with `skillctl install`.
 
+## Sibling Projects
+
+skillctl is part of a zero-dependency Hermes tool suite:
+
+| Project | Purpose |
+|---|---|
+| [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer) | Cross-session semantic memory via SQLite |
+| **skillctl (this)** | Skill context manager |
+| [Hermes SQLite Toolkit](https://github.com/wmyung/hermes-sqlite-toolkit) | Tool cache, artifact registry, decision log |
+
+All three use SQLite under the hood. The SQLite Toolkit's `sqlite_query` tool can query skillctl's `skill_registry.db` directly.
+
 ## Optional: Memory Enhancer Integration
 
 If you also use [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer), you can cross-reference skillctl with the shared memory DB:

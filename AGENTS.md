@@ -20,16 +20,27 @@ When the user asks for something skill-worthy:
 - **`skillctl install <name>`** — when the user needs a skill that's in archive. Takes 0.1s.
 - **`skillctl init`** — after any manual file changes to `skills/` or `archive-skills/`, to keep the SQLite index in sync.
 
-## Optional: Memory Enhancer Integration
+## Optional: Cross-Reference with Sibling Tools
 
-If you also have [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer) installed, cross-reference:
+skillctl is part of a zero-dependency Hermes tool suite:
+
+| Project | Purpose |
+|---|---|
+| [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer) | Cross-session semantic memory via `memory_enhancer_*` tools |
+| **skillctl (this)** | Skill registry search via `skillctl search` |
+| [Hermes SQLite Toolkit](https://github.com/wmyung/hermes-sqlite-toolkit) | Tool cache + artifact registry + decision log via `sqlite_query` |
+
+### Memory Enhancer Integration
+
+If you also have Hermes Memory Enhancer installed, cross-reference:
 
 | Layer | Tool | Scope |
 |---|---|---|
 | Skill registry | `skillctl search` | All skills (active + archived), ~10ms |
 | Cross-agent memory | `memory_enhancer_search("skill:...")` | If multiple agents share a DB, ~500ms |
+| Structured data | `sqlite_query(database="skill", query="...")` | Direct SQL on skill_registry.db |
 
-Without the enhancer, skillctl works standalone. All search is local via SQLite.
+Without the enhancer or toolkit, skillctl works standalone. All search is local via SQLite.
 
 ## Guardrails
 
