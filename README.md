@@ -1,6 +1,6 @@
 # skillctl — Hermes Context Saver 🧠⚡
 
-**Zero-dependency skill manager for Hermes Agent. Trim your `available_skills`. Reclaim context. Reinstall in seconds.**
+**Zero-dependency skill manager for Hermes Agent. Trim your `available_skills`. Reclaim context. Reinstall in seconds. Keywords: skillctl, hermes-skills, context-saver, skill-manager, prompt-compression, token-saver, hermes-agent, skill-registry.**
 
 Every skill in `~/.hermes/skills/` injects its name and description into the system prompt every session. 300+ skills means ~50KB of context burned before the model reads a single user message. **skillctl moves unused skills to an archive directory so they stop consuming context, and brings them back on demand.**
 
