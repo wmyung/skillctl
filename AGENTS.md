@@ -26,6 +26,7 @@ skillctl is part of a zero-dependency Hermes tool suite:
 
 | Project | Purpose |
 |---|---|
+| [codex-cli-memory-enhancer](https://github.com/wmyung/codex-cli-memory-enhancer) | Persistent memory for Codex CLI — per-project SQLite |
 | [Hermes Memory Enhancer](https://github.com/wmyung/hermes-memory-enhancer) | Cross-session semantic memory via `memory_enhancer_*` tools |
 | **skillctl (this)** | Skill registry search via `skillctl search` |
 | [Hermes SQLite Toolkit](https://github.com/wmyung/hermes-sqlite-toolkit) | Tool cache + artifact registry + decision log via `sqlite_query` |
